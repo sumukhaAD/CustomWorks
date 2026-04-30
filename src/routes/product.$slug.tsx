@@ -1,4 +1,4 @@
-import { createLazyFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/cw/PageHeader";
 import { getProductBySlug, type PriceTier } from "@/lib/products";
@@ -7,8 +7,10 @@ import { useState } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { MessageCircle, Upload, Clock, CheckCircle } from "lucide-react";
 
-export const Route = createLazyFileRoute("/product/$slug")({
-  component: ProductPage,
+export const Route = createFileRoute("/product/$slug")({
+  head: ({ params }) => ({
+    meta: [{ title: params.slug.replace(/-/g, " ") + " — CustomWorks" }],
+  }),
 });
 
 const WHATSAPP_NUMBER = "918310529922";
@@ -115,6 +117,7 @@ function ProductPage() {
 
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12">
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20">
+          {/* Left: image + specs */}
           <div className="space-y-6">
             <div className="bg-[#0e0c0a] rounded-sm p-8 flex items-center justify-center aspect-[4/3]">
               <img
@@ -158,7 +161,9 @@ function ProductPage() {
             </div>
           </div>
 
+          {/* Right: pricing + order */}
           <div className="space-y-8">
+            {/* Tier selector */}
             <div>
               <h2 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
                 Select Quantity
@@ -190,6 +195,7 @@ function ProductPage() {
                 ))}
               </div>
 
+              {/* Custom qty */}
               <div className="border border-border p-4">
                 <label className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground block mb-2">
                   Custom Quantity
@@ -221,6 +227,7 @@ function ProductPage() {
               </div>
             </div>
 
+            {/* Price summary */}
             {effectiveQty > 0 && (
               <div className="bg-muted p-4 flex justify-between items-center">
                 <div>
@@ -235,6 +242,7 @@ function ProductPage() {
               </div>
             )}
 
+            {/* Customisation fields */}
             <div>
               <h2 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
                 Customisation Details
@@ -266,6 +274,7 @@ function ProductPage() {
               </div>
             </div>
 
+            {/* Artwork */}
             <div className="border border-border p-4 flex items-start gap-3">
               <Upload size={14} className="text-muted-foreground mt-0.5 shrink-0" />
               <div className="flex-1">
@@ -284,6 +293,7 @@ function ProductPage() {
               </div>
             </div>
 
+            {/* CTAs */}
             <div className="space-y-3">
               <button
                 onClick={handleAddToCart}
@@ -293,7 +303,7 @@ function ProductPage() {
                 {added ? "Added to Cart" : "Add to Cart"}
               </button>
 
-              
+              <a
                 href={orderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
