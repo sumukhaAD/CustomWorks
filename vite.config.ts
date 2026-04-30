@@ -15,21 +15,6 @@ export default defineConfig({
     port: 8080,
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            if (id.includes("supabase")) return "supabase";
-            if (id.includes("@tanstack")) return "router";
-            if (id.includes("@radix-ui")) return "ui";
-            if (id.includes("recharts")) return "charts";
-            // Keep react and react-dom together in one chunk
-            if (id.includes("react")) return "react-vendor";
-            return "vendor";
-          }
-          if (id.includes("src/lib/products")) return "products";
-        },
-      },
-    },
+    chunkSizeWarningLimit: 1000,
   },
 });
