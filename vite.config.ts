@@ -17,5 +17,17 @@ export default defineConfig({
   },
   server: {
     port: 8080,
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'router': ['@tanstack/react-router'],
+          'supabase': ['@supabase/supabase-js'],
+          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
+        }
+      }
+    }
   }
 })
