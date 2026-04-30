@@ -21,11 +21,17 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['@tanstack/react-router'],
-          'supabase': ['@supabase/supabase-js'],
-          'ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('supabase')) return 'supabase'
+            if (id.includes('@tanstack')) return 'router'
+            if (id.includes('@radix-ui')) return 'ui'
+            if (id.includes('recharts')) return 'charts'
+            if (id.includes('react-dom')) return 'react-dom'
+            if (id.includes('react')) return 'react'
+            return 'vendor'
+          }
+          if (id.includes('src/lib/products')) return 'products'
         }
       }
     }
