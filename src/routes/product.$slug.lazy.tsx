@@ -3,7 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/cw/PageHeader";
 import { getProductBySlug, type PriceTier } from "@/lib/products";
 import { formatINR } from "@/lib/constants";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { MessageCircle, Upload, Clock, CheckCircle } from "lucide-react";
 
@@ -15,7 +15,7 @@ const WHATSAPP_NUMBER = "918310529922";
 
 function ProductPage() {
   const { slug } = Route.useParams();
-  const product = getProductBySlug(slug);
+  const product = useMemo(() => getProductBySlug(slug), [slug]);
 
   const [selectedTier, setSelectedTier] = useState<PriceTier | null>(
     product?.priceTiers[0] ?? null,
@@ -293,7 +293,7 @@ function ProductPage() {
                 {added ? "Added to Cart" : "Add to Cart"}
               </button>
 
-            <a
+              <a
                 href={orderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
