@@ -293,7 +293,7 @@ function ProductPage() {
                 {added ? "Added to Cart" : "Add to Cart"}
               </button>
 
-              
+            <a
                 href={orderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
