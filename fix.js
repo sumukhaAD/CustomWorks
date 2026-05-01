@@ -1,0 +1,1 @@
+const fs=require('fs');const f='src/routes/product.\.lazy.tsx';let c=fs.readFileSync(f,'utf8');c=c.replace('              \n                href={orderUrl}','              <a\n                href={orderUrl}');fs.writeFileSync(f,c);console.log('done');
