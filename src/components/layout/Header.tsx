@@ -48,30 +48,20 @@ export function Header() {
           </button>
 
           {/* Desktop left: logo */}
-          <Link to="/" className="hidden lg:flex items-center gap-2 shrink-0">
+          <Link to="/" className="hidden lg:flex items-center shrink-0">
             <img
-              src="YOUR_DARK_LOGO_URL"
+              src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/Customworks_light_theme_logo.png"
               alt="CustomWorks"
-              className="h-10 w-auto block dark:hidden"
-            />
-            <img
-              src="YOUR_LIGHT_LOGO_URL"
-              alt="CustomWorks"
-              className="h-10 w-auto hidden dark:block"
+              className="h-10 w-auto"
             />
           </Link>
 
           {/* Mobile center logo */}
           <Link to="/" className="lg:hidden flex items-center">
             <img
-              src="YOUR_DARK_LOGO_URL"
+              src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/Customworks_light_theme_logo.png"
               alt="CustomWorks"
-              className="h-8 w-auto block dark:hidden"
-            />
-            <img
-              src="YOUR_LIGHT_LOGO_URL"
-              alt="CustomWorks"
-              className="h-8 w-auto hidden dark:block"
+              className="h-8 w-auto"
             />
           </Link>
 
