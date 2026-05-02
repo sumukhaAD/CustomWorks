@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Menu, ShoppingBag, User, Heart, Search, X } from "lucide-react";
 import { useCartStore, selectTotalItems } from "@/store/cartStore";
 import { SHOP_CATEGORIES, NAV_LINKS } from "@/lib/constants";
@@ -20,15 +20,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  let hoverTimer: ReturnType<typeof setTimeout> | undefined;
-  const openMega = () => {
-    if (hoverTimer) clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => setMegaOpen(true), 150);
-  };
-  const closeMega = () => {
-    if (hoverTimer) clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => setMegaOpen(false), 100);
-  };
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const openMega = useCallback(() => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => setMegaOpen(true), 150);
+  }, []);
+  const closeMega = useCallback(() => {
+    if (hoverTimer.current) clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => setMegaOpen(false), 100);
+  }, []);
 
   return (
     <>
