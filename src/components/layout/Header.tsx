@@ -50,7 +50,7 @@ export function Header() {
           {/* Desktop left: logo */}
           <Link to="/" className="hidden lg:flex items-center shrink-0">
             <img
-              src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/Customworks_light_theme_logo.png"
+              src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/logo-light.png"
               alt="CustomWorks"
               className="h-10 w-auto"
             />
@@ -59,7 +59,7 @@ export function Header() {
           {/* Mobile center logo */}
           <Link to="/" className="lg:hidden flex items-center">
             <img
-              src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/Customworks_light_theme_logo.png"
+              src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/logo-light.png"
               alt="CustomWorks"
               className="h-8 w-auto"
             />
