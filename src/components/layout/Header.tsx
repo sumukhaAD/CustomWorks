@@ -53,6 +53,7 @@ export function Header() {
               src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/logo-light.png"
               alt="CustomWorks"
               className="h-10 w-auto"
+              style={{ mixBlendMode: "multiply" }}
             />
           </Link>
 
@@ -62,6 +63,7 @@ export function Header() {
               src="https://kdjbiwfhopytzkqzztmr.supabase.co/storage/v1/object/public/product-images/logo-light.png"
               alt="CustomWorks"
               className="h-8 w-auto"
+              style={{ mixBlendMode: "multiply" }}
             />
           </Link>
 
