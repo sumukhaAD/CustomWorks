@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
 import appCss from "../styles.css?url";
 import { useEffect } from "react";
 import { supabase } from "@/lib/supabase";
@@ -45,24 +45,10 @@ export const Route = createRootRoute({
     ],
     links: [{ rel: "stylesheet", href: appCss }],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
 
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   const setUser = useUserStore((s) => s.setUser);
@@ -106,7 +92,7 @@ function RootComponent() {
     );
 
     return () => subscription.unsubscribe();
-  }, [setUser, signOut]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return <Outlet />;
 }
