@@ -49,13 +49,30 @@ export function Header() {
 
           {/* Desktop left: logo */}
           <Link to="/" className="hidden lg:flex items-center gap-2 shrink-0">
-            <span className="font-serif text-2xl tracking-tight text-foreground">CustomWorks</span>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground hidden xl:inline">India</span>
+            <img
+              src="YOUR_DARK_LOGO_URL"
+              alt="CustomWorks"
+              className="h-10 w-auto block dark:hidden"
+            />
+            <img
+              src="YOUR_LIGHT_LOGO_URL"
+              alt="CustomWorks"
+              className="h-10 w-auto hidden dark:block"
+            />
           </Link>
 
           {/* Mobile center logo */}
-          <Link to="/" className="lg:hidden font-serif text-xl text-foreground">
-            CustomWorks
+          <Link to="/" className="lg:hidden flex items-center">
+            <img
+              src="YOUR_DARK_LOGO_URL"
+              alt="CustomWorks"
+              className="h-8 w-auto block dark:hidden"
+            />
+            <img
+              src="YOUR_LIGHT_LOGO_URL"
+              alt="CustomWorks"
+              className="h-8 w-auto hidden dark:block"
+            />
           </Link>
 
           {/* Desktop nav */}
