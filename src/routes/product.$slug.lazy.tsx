@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/cw/PageHeader";
@@ -80,9 +81,14 @@ function ProductPage() {
     (artworkName || "Will share separately");
 
   const bulkText = "Hi, I need bulk pricing for " + product.name;
-  const orderUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(orderText);
-  const bulkUrl = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(bulkText);
-
+  const orderUrl = useMemo(
+    () => "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(orderText),
+    [orderText],
+  );
+  const bulkUrl = useMemo(
+    () => "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(bulkText),
+    [bulkText],
+  );
   function handleAddToCart() {
     if (effectiveQty === 0) return;
     addItem({
@@ -294,7 +300,7 @@ function ProductPage() {
                 {added ? "Added to Cart" : "Add to Cart"}
               </button>
 
-            <a  
+              <a
                 href={orderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
