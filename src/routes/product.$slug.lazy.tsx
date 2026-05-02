@@ -281,13 +281,27 @@ function ProductPage() {
                   Share your design file (PDF, AI, CDR, PNG at 300 DPI) via WhatsApp after placing
                   the order. Our team will confirm within 2 hours.
                 </p>
-                <input
-                  type="text"
-                  value={artworkName}
-                  onChange={(e) => setArtworkName(e.target.value)}
-                  placeholder="Describe your artwork or file name"
-                  className="mt-2 w-full bg-transparent border-b border-border focus:border-foreground outline-none text-xs py-1"
-                />
+                <div className="mt-2 space-y-2">
+                  <label className="cursor-pointer inline-flex items-center gap-2 border border-border px-3 py-2 text-xs uppercase tracking-[0.15em] hover:border-foreground transition-colors">
+                    <Upload size={12} />
+                    {artworkName ? artworkName : "Choose File"}
+                    <input
+                      type="file"
+                      accept=".pdf,.ai,.cdr,.png,.jpg,.jpeg,.eps,.psd"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) setArtworkName(file.name);
+                      }}
+                    />
+                  </label>
+                  {artworkName && (
+                    <p className="text-xs text-muted-foreground">{artworkName}</p>
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    Accepted: PDF, AI, CDR, PNG, JPG, EPS, PSD · Max 50MB
+                  </p>
+                </div>
               </div>
             </div>
 
