@@ -3,7 +3,7 @@ import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/cw/PageHeader";
 import { getProductBySlug, type PriceTier } from "@/lib/products";
 import { formatINR } from "@/lib/constants";
-import { useState, useMemo, memo } from "react";
+import { useState, useMemo } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { MessageCircle, Upload, Clock, CheckCircle } from "lucide-react";
 
@@ -12,10 +12,6 @@ export const Route = createLazyFileRoute("/product/$slug")({
 });
 
 const WHATSAPP_NUMBER = "918310529922";
-
-const ProductImage = memo(({ src, alt }: { src: string; alt: string }) => (
-  <img src={src} alt={alt} className="w-full h-full object-contain" />
-));
 
 function ProductPage() {
   const { slug } = Route.useParams();
@@ -121,7 +117,12 @@ function ProductPage() {
         <div className="grid lg:grid-cols-2 gap-12 xl:gap-20">
           <div className="space-y-6">
             <div className="bg-[#0e0c0a] rounded-sm p-8 flex items-center justify-center aspect-[4/3]">
-              <ProductImage src={product.image} alt={product.name} />
+              <img
+                src={product.image}
+                alt={product.name}
+                loading="lazy"
+                className="w-full h-full object-contain"
+              />
             </div>
 
             <div className="flex items-center gap-3">

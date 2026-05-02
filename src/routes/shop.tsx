@@ -76,7 +76,7 @@ function ShopPage() {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {filtered.map(product => (
+            {filtered.map((product) => (
               <Link
                 key={product.id}
                 to="/product/$slug"
@@ -88,6 +88,7 @@ function ShopPage() {
                   <img
                     src={product.image}
                     alt={product.name}
+                    loading="lazy"
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
