@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/layout/Layout";
 import { PageHeader } from "@/components/cw/PageHeader";
@@ -5,7 +6,7 @@ import { useUserStore } from "@/store/userStore";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 import { formatINR } from "@/lib/constants";
-import { User, Package, MapPin, ChevronRight } from "lucide-react";
+import { User, Package, MapPin, ChevronRight, LogOut } from "lucide-react";
 
 export const Route = createFileRoute("/account/")({
   component: AccountOverview,
@@ -79,7 +80,17 @@ function AccountOverview() {
           </Link>
           <Link to="/account/addresses" className="flex items-center gap-2 py-2 px-3 text-muted-foreground hover:text-foreground transition-colors">
             <MapPin size={14} /> Addresses
-        </Link>
+          </Link>
+          <button
+            onClick={async () => {
+              if (supabase) await supabase.auth.signOut();
+              useUserStore.getState().signOut();
+              window.location.href = "/";
+            }}
+            className="flex items-center gap-2 py-2 px-3 text-muted-foreground hover:text-foreground transition-colors w-full text-left"
+          >
+            <LogOut size={14} /> Sign Out
+          </button>
         </aside>
 
         {/* Main */}
